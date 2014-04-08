@@ -1,8 +1,0 @@
-module Main where
-
-
-fib n = fiblist !! n
-  where
-    fiblist = 1:1:(zipWith (+) fiblist (tail fiblist))
-    
-    
