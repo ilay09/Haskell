@@ -1,4 +1,24 @@
+<- наивный ->
+
 fib :: Int -> Int
 fib 0 = 1
 fib 1 = 1
-fib n = fib (n-2) + fib (n-1)
+fib n = fib (n-1) + fib (n-2)
+
+
+<- хвост рекурсивный ->
+
+fib2 = tailFib 0 1 0 
+
+tailFib prev1 prev2 start end 
+          | start == end = next
+          | otherwise = tailFib next prev1 (start + 1) end
+          where next = prev1 + prev2
+
+
+
+<- с использованием мемоизации ->
+
+fib3 n = fiblist !! n
+  where
+    fiblist = 1:1:(zipWith (+) fiblist (tail fiblist))
