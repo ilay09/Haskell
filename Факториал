@@ -1,0 +1,16 @@
+module Main where
+
+<- наивный ->
+fact :: Integer -> Integer
+fact 0 = 1
+fact n = n * fact (n - 1)
+
+
+<- хвост рекурсивный ->
+fact2 x =
+  tailFact x 1
+  where tailFact 0 a = a
+        tailFact n a = tailFact (n - 1) (n * a)
+        
+<- с использованием мемоизации ->
+
