@@ -18,7 +18,20 @@ tailFib prev1 prev2 start end
 
 
 <- с использованием мемоизации ->
+import Data.MemoTrie
 
-fib3 n = fiblist !! n
+fib :: Int -> Int
+fib 0 = 0
+fib 1 = 1
+fib n = fib (n - 1) + fib (n - 2)
+
+fib' :: Int -> Int
+fib' n = fib'' n
   where
-    fiblist = 1:1:(zipWith (+) fiblist (tail fiblist))
+    mfib = memo fib'
+    fib'' 0 = 0
+    fib'' 1 = 1
+    fib'' n = mfib (n - 1) + mfib (n - 2)
+
+main = do
+  print $ fib'(40)
